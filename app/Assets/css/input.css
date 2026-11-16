@@ -3,15 +3,15 @@
 @source "../../Views";
 
 @theme {
-    --color-brand-50: #edf8f8;
-    --color-brand-100: #d3efef;
-    --color-brand-200: #a7dfdf;
-    --color-brand-300: #73caca;
-    --color-brand-400: #39adae;
-    --color-brand-500: #087e80;
-    --color-brand-600: #087072;
-    --color-brand-700: #075b5d;
-    --color-brand-800: #06494b;
-    --color-brand-900: #073e40;
-    --color-ink-950: #172033;
+    --color-brand-50: #e8f7f5;
+    --color-brand-100: #c9efeb;
+    --color-brand-200: #9de2da;
+    --color-brand-300: #65d2c5;
+    --color-brand-400: #32c4b3;
+    --color-brand-500: #13b8a6;
+    --color-brand-600: #0b8179;
+    --color-brand-700: #075b59;
+    --color-brand-800: #064947;
+    --color-brand-900: #043936;
+    --color-ink-950: #263238;
 }

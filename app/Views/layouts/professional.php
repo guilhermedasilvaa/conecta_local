@@ -3,16 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#087e80">
+    <meta name="theme-color" content="#075B59">
     <title><?= esc($title) ?> | Conecta Local</title>
+    <link rel="icon" type="image/svg+xml" href="<?= base_url('favicon.svg') ?>">
+    <link rel="alternate icon" href="<?= base_url('favicon.ico') ?>">
     <link rel="stylesheet" href="<?= base_url('assets/css/app.css') ?>">
 </head>
 <body class="min-h-screen bg-slate-50 text-ink-950 antialiased">
     <header class="border-b border-slate-200 bg-white">
         <div class="mx-auto flex max-w-[90rem] items-center justify-between gap-3 px-4 py-3.5 sm:px-6 lg:px-8">
-            <a class="inline-flex min-w-0 items-center gap-2.5 text-base font-extrabold tracking-tight text-brand-800 sm:text-lg" href="<?= site_url('professional/dashboard') ?>">
-                <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-brand-700 text-xs font-extrabold text-white shadow-sm" aria-hidden="true">CL</span>
-                <span class="truncate">Conecta Local <span class="hidden font-medium text-slate-400 sm:inline">/ Área profissional</span></span>
+            <a class="inline-flex min-w-0 items-center gap-2.5 text-base font-extrabold tracking-tight text-brand-800 sm:text-lg" href="<?= site_url('professional/dashboard') ?>" aria-label="Conecta Local — área profissional">
+                <img class="h-10 w-auto shrink-0" src="<?= base_url('assets/images/brand/conecta-local.svg') ?>" alt="Conecta Local">
+                <span class="hidden truncate font-medium text-slate-400 sm:inline">/ Área profissional</span>
             </a>
             <div class="flex shrink-0 items-center gap-2 sm:gap-4">
                 <a class="hidden text-sm font-bold text-slate-500 transition hover:text-brand-800 sm:inline" href="<?= site_url('profissionais') ?>" target="_blank" rel="noopener noreferrer">Ver catálogo</a>

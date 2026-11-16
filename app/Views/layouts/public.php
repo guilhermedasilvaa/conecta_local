@@ -13,21 +13,18 @@ $activePage = match (true) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#087e80">
+    <meta name="theme-color" content="#075B59">
     <meta name="description" content="Encontre profissionais e serviços perto de você no Conecta Local.">
     <title><?= esc($this->renderSection('title') ?: ($title ?? 'Conecta Local')) ?> | Conecta Local</title>
+    <link rel="icon" type="image/svg+xml" href="<?= base_url('favicon.svg') ?>">
+    <link rel="alternate icon" href="<?= base_url('favicon.ico') ?>">
     <link rel="stylesheet" href="<?= base_url('assets/css/app.css') ?>">
 </head>
 <body class="flex min-h-screen flex-col bg-slate-50 text-ink-950 antialiased">
     <header class="sticky top-0 z-30 border-b border-slate-200/80 bg-white/95 backdrop-blur">
         <nav class="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3.5 sm:px-6 lg:px-8" aria-label="Navegação principal">
-            <a class="inline-flex shrink-0 items-center gap-2.5 text-lg font-extrabold tracking-tight text-brand-800" href="<?= site_url('/') ?>">
-                <span class="flex h-10 w-10 items-center justify-center rounded-2xl bg-brand-700 text-white shadow-sm shadow-brand-700/20" aria-hidden="true">
-                    <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 11.25 10.5 9a2.12 2.12 0 0 1 3 0l.75.75m-6 1.5 3.75 3.75a2.12 2.12 0 0 0 3 0l3.75-3.75M3 9.75l4.5-4.5 3 3-4.5 4.5L3 9.75Zm18 0-4.5-4.5-3 3 4.5 4.5 3-3ZM3 9.75l-1.5 1.5 4.5 4.5 1.5-1.5m13.5-4.5 1.5 1.5-4.5 4.5-1.5-1.5" />
-                    </svg>
-                </span>
-                <span class="leading-tight">Conecta<br class="sm:hidden"> Local</span>
+            <a class="inline-flex shrink-0 items-center" href="<?= site_url('/') ?>" aria-label="Conecta Local — início">
+                <img class="h-10 w-auto" src="<?= base_url('assets/images/brand/conecta-local.svg') ?>" alt="Conecta Local">
             </a>
 
             <div class="hidden items-center gap-8 lg:flex">
@@ -70,8 +67,8 @@ $activePage = match (true) {
         <div class="mx-auto grid max-w-7xl gap-9 px-5 py-10 sm:px-8 md:grid-cols-[1.4fr_1fr_1fr] lg:py-12">
             <div>
                 <a class="inline-flex items-center gap-2.5 font-extrabold tracking-tight text-brand-800" href="<?= site_url('/') ?>">
-                    <span class="flex h-9 w-9 items-center justify-center rounded-xl bg-brand-700 text-sm font-bold text-white" aria-hidden="true">CL</span>
-                    Conecta Local
+                    <img class="h-9 w-9" src="<?= base_url('assets/images/brand/conecta-local-symbol.svg') ?>" alt="" aria-hidden="true">
+                    <span>Conecta Local</span>
                 </a>
                 <p class="mt-4 max-w-sm text-sm leading-6 text-slate-500">Conectando pessoas a profissionais de confiança, perto de casa.</p>
             </div>

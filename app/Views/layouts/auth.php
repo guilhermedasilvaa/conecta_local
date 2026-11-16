@@ -3,8 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#087e80">
+    <meta name="theme-color" content="#075B59">
     <title><?= esc($title) ?> | Conecta Local</title>
+    <link rel="icon" type="image/svg+xml" href="<?= base_url('favicon.svg') ?>">
+    <link rel="alternate icon" href="<?= base_url('favicon.ico') ?>">
     <link rel="stylesheet" href="<?= base_url('assets/css/app.css') ?>">
 </head>
 <body class="min-h-screen bg-slate-50 text-ink-950 antialiased">
@@ -13,8 +15,8 @@
             <div class="pointer-events-none absolute -right-20 -top-20 -z-10 h-72 w-72 rounded-full border-[48px] border-white/5"></div>
             <div class="pointer-events-none absolute -bottom-36 -left-20 -z-10 h-80 w-80 rounded-full bg-cyan-400/10 blur-2xl"></div>
             <a class="relative inline-flex w-fit items-center gap-2.5 text-lg font-extrabold tracking-tight" href="<?= site_url('/') ?>">
-                <span class="flex h-10 w-10 items-center justify-center rounded-2xl bg-white/10 text-xs ring-1 ring-white/15" aria-hidden="true">CL</span>
-                Conecta Local
+                <span class="flex h-10 w-10 items-center justify-center rounded-2xl bg-white" aria-hidden="true"><img class="h-9 w-9" src="<?= base_url('assets/images/brand/conecta-local-symbol.svg') ?>" alt=""></span>
+                <span>Conecta Local</span>
             </a>
             <div class="relative my-8 max-w-lg lg:my-auto">
                 <p class="mb-4 text-xs font-bold uppercase tracking-[0.16em] text-brand-200">Talentos perto de você</p>
@@ -32,8 +34,8 @@
             <div class="w-full max-w-lg">
                 <div class="mb-7 lg:hidden">
                     <a class="inline-flex items-center gap-2.5 font-extrabold text-brand-800" href="<?= site_url('/') ?>">
-                        <span class="flex h-9 w-9 items-center justify-center rounded-xl bg-brand-100 text-xs font-extrabold" aria-hidden="true">CL</span>
-                        Conecta Local
+                        <img class="h-9 w-9" src="<?= base_url('assets/images/brand/conecta-local-symbol.svg') ?>" alt="" aria-hidden="true">
+                        <span>Conecta Local</span>
                     </a>
                 </div>
                 <?= $this->renderSection('content') ?>
