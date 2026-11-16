@@ -18,7 +18,6 @@ class CatalogController extends BaseController
         $term       = $this->searchTerm();
         $state      = $this->stateFilter();
         $city       = $this->locationFilter('city');
-        $neighborhood = $this->locationFilter('neighborhood');
 
         return view('public/catalog/index', [
             'title'         => 'Encontre profissionais',
@@ -26,16 +25,13 @@ class CatalogController extends BaseController
             'categoryId'    => $categoryId,
             'state'         => $state,
             'city'          => $city,
-            'neighborhood'  => $neighborhood,
-            'states'        => BrazilianStates::STATES,
             'categories'    => $categories,
             'professionals' => $catalog->searchProfessionals(
                 $term,
                 $categoryId,
                 self::PER_PAGE,
                 $state,
-                $city,
-                $neighborhood
+                $city
             ),
             'pager'         => $catalog->pager,
         ]);

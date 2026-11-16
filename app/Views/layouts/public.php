@@ -93,6 +93,8 @@ $activePage = match (true) {
         </div>
     </footer>
 <script src="<?= base_url('assets/js/location-fields.js') ?>" defer></script>
+<script src="<?= base_url('assets/js/searchable-select.js') ?>" defer></script>
+<script src="<?= base_url('assets/js/geolocation-search.js') ?>" defer></script>
 <script {csp-script-nonce}>
     const updateActiveNavigation = () => {
         const hashItem = {

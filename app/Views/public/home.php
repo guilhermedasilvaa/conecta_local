@@ -15,7 +15,7 @@
             <h1 class="mt-5 max-w-2xl text-4xl font-extrabold leading-[1.08] tracking-tight text-ink-950 sm:text-5xl lg:text-[3.5rem]">Encontre os melhores profissionais da sua região.</h1>
             <p class="mt-5 max-w-xl text-base leading-7 text-slate-600 sm:text-lg">Serviços de qualidade, perto de você. Conheça profissionais locais e fale diretamente com quem pode ajudar.</p>
 
-            <form class="mt-8 grid gap-2 rounded-2xl border border-slate-200 bg-white p-3 shadow-lg shadow-slate-900/5 sm:grid-cols-2 sm:p-4" action="<?= site_url('profissionais') ?>" method="get" role="search" data-location-fields>
+            <form class="mt-8 grid gap-3 rounded-2xl border border-slate-200 bg-white p-3 shadow-lg shadow-slate-900/5 sm:grid-cols-[minmax(0,1fr)_minmax(13rem,0.8fr)_auto] sm:items-center sm:p-4" action="<?= site_url('profissionais') ?>" method="get" role="search" data-geolocation-search>
                 <label class="flex min-w-0 items-center gap-3 rounded-xl px-2">
                     <svg class="h-5 w-5 shrink-0 text-brand-700" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
                         <circle cx="10.8" cy="10.8" r="6.8" />
@@ -24,59 +24,34 @@
                     <span class="sr-only">Profissional ou serviço</span>
                     <input class="min-w-0 flex-1 border-0 bg-transparent py-3 text-sm text-ink-950 outline-none placeholder:text-slate-400 focus:ring-0" name="q" type="search" maxlength="100" placeholder="O que você precisa?">
                 </label>
-                <label class="flex min-w-0 items-center gap-3 rounded-xl border-t border-slate-100 px-2 sm:border-l sm:border-t-0 sm:border-slate-200 sm:pl-4">
+                <div class="flex min-w-0 items-center gap-3 rounded-xl border-t border-slate-100 px-2 sm:border-l sm:border-t-0 sm:border-slate-200 sm:pl-4">
                     <svg class="h-5 w-5 shrink-0 text-brand-700" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.2c0 5.1-7.5 10.3-7.5 10.3S4.5 15.3 4.5 10.2a7.5 7.5 0 1 1 15 0Z" />
-                        <circle cx="12" cy="10" r="2.3" />
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M20 10.2c0 5.2-8 11-8 11s-8-5.8-8-11a8 8 0 1 1 16 0Z" />
+                        <circle cx="12" cy="10" r="2.5" />
                     </svg>
-                    <span class="sr-only">Categoria</span>
-                    <select class="min-w-0 flex-1 border-0 bg-transparent py-3 text-sm text-slate-600 outline-none focus:ring-0" name="category">
+                    <label class="sr-only" for="home-category">Categoria ou serviço</label>
+                    <select class="min-w-0 flex-1 border-0 bg-transparent py-3 text-sm text-slate-600 outline-none focus:ring-0" id="home-category" name="category" data-searchable-select data-search-compact="true" data-search-placeholder="Categoria ou serviço...">
                         <option value="">Todas as categorias</option>
                         <?php foreach ($categories as $category): ?>
                             <option value="<?= (int) $category['id'] ?>"><?= esc($category['name']) ?></option>
                         <?php endforeach ?>
                     </select>
-                </label>
-                <div class="grid gap-2 sm:col-span-2 sm:grid-cols-2 lg:grid-cols-[0.7fr_1fr_1fr]">
-                    <label class="flex min-w-0 items-center gap-3 rounded-xl border-t border-slate-100 px-2 sm:border-t-0">
-                        <svg class="h-5 w-5 shrink-0 text-brand-700" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 21s7-6.1 7-12a7 7 0 1 0-14 0c0 5.9 7 12 7 12Z" />
-                            <circle cx="12" cy="9" r="2.2" />
-                        </svg>
-                        <span class="sr-only">Estado</span>
-                        <select class="min-w-0 flex-1 border-0 bg-transparent py-3 text-sm text-slate-600 outline-none focus:ring-0" name="state" data-location-state>
-                            <option value="">Todos os estados</option>
-                            <?php foreach ($states as $uf => $stateName): ?>
-                                <option value="<?= esc($uf) ?>" data-state-name="<?= esc($stateName, 'attr') ?>"><?= esc($uf) ?> — <?= esc($stateName) ?></option>
-                            <?php endforeach ?>
-                        </select>
-                    </label>
-                    <label class="flex min-w-0 items-center gap-3 rounded-xl border-t border-slate-100 px-2 sm:border-t-0 sm:border-l sm:border-slate-200 sm:pl-4">
-                        <svg class="h-5 w-5 shrink-0 text-brand-700" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M3 10.5 12 3l9 7.5v9a1.5 1.5 0 0 1-1.5 1.5h-15A1.5 1.5 0 0 1 3 19.5v-9Z" />
-                            <path stroke-linecap="round" d="M9 21v-6h6v6" />
-                        </svg>
-                        <span class="sr-only">Cidade</span>
-                        <select class="min-w-0 flex-1 border-0 bg-transparent py-3 text-sm text-slate-600 outline-none focus:ring-0 disabled:cursor-not-allowed" name="city" data-location-city disabled>
-                            <option value="">Selecione um estado primeiro</option>
-                        </select>
-                    </label>
-                    <label class="flex min-w-0 items-center gap-3 rounded-xl border-t border-slate-100 px-2 sm:border-l sm:border-slate-200 sm:pl-4 lg:border-t-0">
-                        <svg class="h-5 w-5 shrink-0 text-brand-700" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M4 20V9l8-5 8 5v11M2 20h20M9 20v-6h6v6M4 10h16" />
-                        </svg>
-                        <span class="sr-only">Bairro</span>
-                        <input class="min-w-0 flex-1 border-0 bg-transparent py-3 text-sm text-ink-950 outline-none placeholder:text-slate-400 focus:ring-0" name="neighborhood" type="text" maxlength="100" placeholder="Seu bairro" list="home-neighborhood-suggestions" data-location-neighborhood>
-                        <datalist id="home-neighborhood-suggestions" data-location-neighborhood-list></datalist>
-                    </label>
                 </div>
-                <p class="text-xs text-slate-500 sm:col-span-2" data-location-city-status role="status" aria-live="polite">Selecione um estado para carregar as cidades do IBGE.</p>
-                <button class="text-left text-xs font-bold text-brand-700 underline" type="button" data-location-city-retry hidden>Tentar carregar cidades novamente</button>
-                <p class="text-xs text-slate-500 sm:col-span-2" data-location-neighborhood-status role="status" aria-live="polite">Os bairros são sugestões comunitárias do OpenStreetMap e podem estar incompletos; você também pode digitar o bairro. <a class="underline" href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">Créditos</a>.</p>
-                <button class="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-brand-700 px-6 text-sm font-bold text-white transition hover:bg-brand-800 focus:outline-none focus:ring-4 focus:ring-brand-100 sm:col-span-2" type="submit">
+                <input type="hidden" name="city" data-geolocation-city>
+                <input type="hidden" name="state" data-geolocation-state>
+                <button class="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-brand-700 px-6 text-sm font-bold text-white transition hover:bg-brand-800 focus:outline-none focus:ring-4 focus:ring-brand-100" type="submit">
                     Buscar
                     <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14m-6-6 6 6-6 6" /></svg>
                 </button>
+                <div class="flex flex-wrap items-center gap-2 text-xs sm:col-span-3" aria-live="polite">
+                    <span class="inline-flex items-center gap-1.5 rounded-full bg-brand-50 px-3 py-1.5 font-semibold text-brand-800" data-geolocation-indicator>
+                        <svg class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M20 10.2c0 5.2-8 11-8 11s-8-5.8-8-11a8 8 0 1 1 16 0Z" /><circle cx="12" cy="10" r="2.5" /></svg>
+                        <span data-geolocation-location>Detectando localização...</span>
+                    </span>
+                    <a class="text-slate-500 underline hover:text-brand-700" href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">© OpenStreetMap contributors</a>
+                    <button class="font-bold text-brand-700 underline hover:text-brand-900" type="button" data-geolocation-retry hidden>Identificar localização</button>
+                    <span class="hidden basis-full text-xs text-amber-800 sm:basis-auto" data-geolocation-status role="status"></span>
+                </div>
             </form>
 
             <div class="mt-6 flex flex-wrap gap-x-5 gap-y-3 text-xs font-semibold text-slate-600 sm:text-sm">
