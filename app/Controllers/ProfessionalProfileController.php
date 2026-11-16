@@ -8,6 +8,7 @@ use CodeIgniter\Database\Exceptions\DatabaseException;
 use CodeIgniter\Exceptions\PageNotFoundException;
 use CodeIgniter\HTTP\ResponseInterface;
 use CodeIgniter\HTTP\Files\UploadedFile;
+use Config\BrazilianStates;
 
 class ProfessionalProfileController extends BaseController
 {
@@ -24,6 +25,7 @@ class ProfessionalProfileController extends BaseController
             'error'            => session()->getFlashdata('error'),
             'validationErrors' => session()->getFlashdata('validationErrors') ?? [],
             'oldInput'         => session()->getFlashdata('oldInput') ?? [],
+            'states'           => BrazilianStates::STATES,
         ]);
     }
 
@@ -36,6 +38,7 @@ class ProfessionalProfileController extends BaseController
             'phone'        => trim($this->postString('phone')),
             'whatsapp'     => trim($this->postString('whatsapp')),
             'city'         => trim($this->postString('city')),
+            'state'        => strtoupper(trim($this->postString('state'))),
             'neighborhood' => trim($this->postString('neighborhood')),
             'description'  => trim($this->postString('description')),
         ];
@@ -45,6 +48,7 @@ class ProfessionalProfileController extends BaseController
             'phone'        => 'permit_empty|max_length[20]',
             'whatsapp'     => 'required|max_length[20]',
             'city'         => 'required|max_length[100]',
+            'state'        => 'required|in_list[' . implode(',', array_keys(BrazilianStates::STATES)) . ']',
             'neighborhood' => 'permit_empty|max_length[100]',
             'description'  => 'permit_empty|max_length[5000]',
         ], [
@@ -60,6 +64,10 @@ class ProfessionalProfileController extends BaseController
             'city' => [
                 'required'   => 'Informe sua cidade.',
                 'max_length' => 'A cidade deve ter no máximo 100 caracteres.',
+            ],
+            'state' => [
+                'required' => 'Selecione seu estado.',
+                'in_list'  => 'Selecione um estado válido.',
             ],
             'neighborhood' => ['max_length' => 'O bairro deve ter no máximo 100 caracteres.'],
             'description' => ['max_length' => 'A descrição deve ter no máximo 5000 caracteres.'],
@@ -134,6 +142,7 @@ class ProfessionalProfileController extends BaseController
                 'phone'        => $data['phone'] !== '' ? $data['phone'] : null,
                 'whatsapp'     => $data['whatsapp'],
                 'city'         => $data['city'],
+                'state'        => $data['state'],
                 'neighborhood' => $data['neighborhood'] !== '' ? $data['neighborhood'] : null,
                 'description'  => $data['description'] !== '' ? $data['description'] : null,
             ];

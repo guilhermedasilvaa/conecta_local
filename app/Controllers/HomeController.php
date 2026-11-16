@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Models\PublicCatalogModel;
+use Config\BrazilianStates;
 
 class HomeController extends BaseController
 {
@@ -13,6 +14,7 @@ class HomeController extends BaseController
         return view('public/home', [
             'categories'   => $catalog->activeCategories(),
             'professionals' => $catalog->featuredProfessionals(),
+            'states'       => BrazilianStates::STATES,
         ]);
     }
 }

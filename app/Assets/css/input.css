@@ -1,3 +1,17 @@
 @import "tailwindcss" source(none);
 
 @source "../../Views";
+
+@theme {
+    --color-brand-50: #edf8f8;
+    --color-brand-100: #d3efef;
+    --color-brand-200: #a7dfdf;
+    --color-brand-300: #73caca;
+    --color-brand-400: #39adae;
+    --color-brand-500: #087e80;
+    --color-brand-600: #087072;
+    --color-brand-700: #075b5d;
+    --color-brand-800: #06494b;
+    --color-brand-900: #073e40;
+    --color-ink-950: #172033;
+}

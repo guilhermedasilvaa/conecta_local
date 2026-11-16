@@ -18,6 +18,7 @@ class ProfessionalProfileModel extends Model
         'phone',
         'whatsapp',
         'city',
+        'state',
         'neighborhood',
         'description',
         'photo',

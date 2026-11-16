@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Models\PublicCatalogModel;
 use CodeIgniter\Exceptions\PageNotFoundException;
+use Config\BrazilianStates;
 
 class CatalogController extends BaseController
 {
@@ -15,13 +16,27 @@ class CatalogController extends BaseController
         $categories = $catalog->activeCategories();
         $categoryId = $this->categoryFilter($categories);
         $term       = $this->searchTerm();
+        $state      = $this->stateFilter();
+        $city       = $this->locationFilter('city');
+        $neighborhood = $this->locationFilter('neighborhood');
 
         return view('public/catalog/index', [
             'title'         => 'Encontre profissionais',
             'term'          => $term,
             'categoryId'    => $categoryId,
+            'state'         => $state,
+            'city'          => $city,
+            'neighborhood'  => $neighborhood,
+            'states'        => BrazilianStates::STATES,
             'categories'    => $categories,
-            'professionals' => $catalog->searchProfessionals($term, $categoryId, self::PER_PAGE),
+            'professionals' => $catalog->searchProfessionals(
+                $term,
+                $categoryId,
+                self::PER_PAGE,
+                $state,
+                $city,
+                $neighborhood
+            ),
             'pager'         => $catalog->pager,
         ]);
     }
@@ -53,6 +68,32 @@ class CatalogController extends BaseController
         $term = preg_replace('/[\x00-\x1F\x7F]/u', ' ', trim($term)) ?? '';
 
         return mb_substr($term, 0, 100);
+    }
+
+    private function stateFilter(): ?string
+    {
+        $value = $this->request->getGet('state');
+
+        if (! is_string($value)) {
+            return null;
+        }
+
+        $state = strtoupper(trim($value));
+
+        return isset(BrazilianStates::STATES[$state]) ? $state : null;
+    }
+
+    private function locationFilter(string $key): string
+    {
+        $value = $this->request->getGet($key);
+
+        if (! is_string($value)) {
+            return '';
+        }
+
+        $value = preg_replace('/[\x00-\x1F\x7F]/u', ' ', trim($value)) ?? '';
+
+        return mb_substr($value, 0, 100);
     }
 
     /**

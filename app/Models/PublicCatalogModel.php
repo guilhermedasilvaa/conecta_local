@@ -44,9 +44,28 @@ class PublicCatalogModel extends Model
     /**
      * @return list<array<string, mixed>>
      */
-    public function searchProfessionals(string $term, ?int $categoryId, int $perPage = 12): array
+    public function searchProfessionals(
+        string $term,
+        ?int $categoryId,
+        int $perPage = 12,
+        ?string $state = null,
+        string $city = '',
+        string $neighborhood = ''
+    ): array
     {
         $this->publicProfessionals();
+
+        if ($state !== null) {
+            $this->where('professional_profiles.state', $state);
+        }
+
+        if ($city !== '') {
+            $this->like('professional_profiles.city', $city);
+        }
+
+        if ($neighborhood !== '') {
+            $this->like('professional_profiles.neighborhood', $neighborhood);
+        }
 
         if ($categoryId !== null) {
             $this->whereIn('professional_profiles.id', static function ($builder) use ($categoryId): void {
@@ -112,6 +131,7 @@ class PublicCatalogModel extends Model
             'professional_profiles.id',
             'professional_profiles.whatsapp',
             'professional_profiles.city',
+            'professional_profiles.state',
             'professional_profiles.neighborhood',
             'professional_profiles.description',
             'professional_profiles.photo',

@@ -6,6 +6,7 @@ use App\Models\ProfessionalProfileModel;
 use App\Models\UserModel;
 use CodeIgniter\Database\Exceptions\DatabaseException;
 use CodeIgniter\HTTP\ResponseInterface;
+use Config\BrazilianStates;
 
 class AuthController extends BaseController
 {
@@ -79,6 +80,7 @@ class AuthController extends BaseController
             'password_confirm' => $this->postString('password_confirm'),
             'whatsapp'         => trim($this->postString('whatsapp')),
             'city'             => trim($this->postString('city')),
+            'state'            => strtoupper(trim($this->postString('state'))),
             'accept_terms'     => $this->postString('accept_terms'),
         ];
 
@@ -90,6 +92,7 @@ class AuthController extends BaseController
                 'password_confirm' => 'required|matches[password]',
                 'whatsapp'         => 'required|max_length[20]',
                 'city'             => 'required|max_length[100]',
+                'state'            => 'required|in_list[' . implode(',', array_keys(BrazilianStates::STATES)) . ']',
                 'accept_terms'     => 'required|in_list[1]',
             ], [
                 'name' => [
@@ -118,6 +121,10 @@ class AuthController extends BaseController
                 'city' => [
                     'required'   => 'Informe sua cidade.',
                     'max_length' => 'A cidade deve ter no máximo 100 caracteres.',
+                ],
+                'state' => [
+                    'required' => 'Selecione seu estado.',
+                    'in_list'  => 'Selecione um estado válido.',
                 ],
                 'accept_terms' => [
                     'required' => 'É necessário aceitar os Termos de Uso e a Política de Privacidade.',
@@ -169,6 +176,7 @@ class AuthController extends BaseController
                 'user_id'  => (int) $userId,
                 'whatsapp' => $data['whatsapp'],
                 'city'     => $data['city'],
+                'state'    => $data['state'],
             ]);
 
             if ($profileCreated === false || ! $db->transStatus()) {
@@ -215,6 +223,7 @@ class AuthController extends BaseController
             'success'          => session()->getFlashdata('success'),
             'validationErrors' => session()->getFlashdata('validationErrors') ?? [],
             'oldInput'         => session()->getFlashdata('oldInput') ?? [],
+            'states'           => BrazilianStates::STATES,
         ];
     }
 
@@ -232,6 +241,7 @@ class AuthController extends BaseController
             'email'        => $data['email'],
             'whatsapp'     => $data['whatsapp'],
             'city'         => $data['city'],
+            'state'        => $data['state'],
             'accept_terms' => $data['accept_terms'],
         ];
     }
