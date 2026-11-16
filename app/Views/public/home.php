@@ -15,7 +15,7 @@
             <h1 class="mt-5 max-w-2xl text-4xl font-extrabold leading-[1.08] tracking-tight text-ink-950 sm:text-5xl lg:text-[3.5rem]">Encontre os melhores profissionais da sua região.</h1>
             <p class="mt-5 max-w-xl text-base leading-7 text-slate-600 sm:text-lg">Serviços de qualidade, perto de você. Conheça profissionais locais e fale diretamente com quem pode ajudar.</p>
 
-            <form class="mt-8 grid gap-2 rounded-2xl border border-slate-200 bg-white p-3 shadow-lg shadow-slate-900/5 sm:grid-cols-2 sm:p-4" action="<?= site_url('profissionais') ?>" method="get" role="search">
+            <form class="mt-8 grid gap-2 rounded-2xl border border-slate-200 bg-white p-3 shadow-lg shadow-slate-900/5 sm:grid-cols-2 sm:p-4" action="<?= site_url('profissionais') ?>" method="get" role="search" data-location-fields>
                 <label class="flex min-w-0 items-center gap-3 rounded-xl px-2">
                     <svg class="h-5 w-5 shrink-0 text-brand-700" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
                         <circle cx="10.8" cy="10.8" r="6.8" />
@@ -44,10 +44,10 @@
                             <circle cx="12" cy="9" r="2.2" />
                         </svg>
                         <span class="sr-only">Estado</span>
-                        <select class="min-w-0 flex-1 border-0 bg-transparent py-3 text-sm text-slate-600 outline-none focus:ring-0" name="state">
+                        <select class="min-w-0 flex-1 border-0 bg-transparent py-3 text-sm text-slate-600 outline-none focus:ring-0" name="state" data-location-state>
                             <option value="">Todos os estados</option>
                             <?php foreach ($states as $uf => $stateName): ?>
-                                <option value="<?= esc($uf) ?>"><?= esc($uf) ?> — <?= esc($stateName) ?></option>
+                                <option value="<?= esc($uf) ?>" data-state-name="<?= esc($stateName, 'attr') ?>"><?= esc($uf) ?> — <?= esc($stateName) ?></option>
                             <?php endforeach ?>
                         </select>
                     </label>
@@ -57,16 +57,22 @@
                             <path stroke-linecap="round" d="M9 21v-6h6v6" />
                         </svg>
                         <span class="sr-only">Cidade</span>
-                        <input class="min-w-0 flex-1 border-0 bg-transparent py-3 text-sm text-ink-950 outline-none placeholder:text-slate-400 focus:ring-0" name="city" type="text" maxlength="100" placeholder="Sua cidade">
+                        <select class="min-w-0 flex-1 border-0 bg-transparent py-3 text-sm text-slate-600 outline-none focus:ring-0 disabled:cursor-not-allowed" name="city" data-location-city disabled>
+                            <option value="">Selecione um estado primeiro</option>
+                        </select>
                     </label>
                     <label class="flex min-w-0 items-center gap-3 rounded-xl border-t border-slate-100 px-2 sm:border-l sm:border-slate-200 sm:pl-4 lg:border-t-0">
                         <svg class="h-5 w-5 shrink-0 text-brand-700" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M4 20V9l8-5 8 5v11M2 20h20M9 20v-6h6v6M4 10h16" />
                         </svg>
                         <span class="sr-only">Bairro</span>
-                        <input class="min-w-0 flex-1 border-0 bg-transparent py-3 text-sm text-ink-950 outline-none placeholder:text-slate-400 focus:ring-0" name="neighborhood" type="text" maxlength="100" placeholder="Seu bairro">
+                        <input class="min-w-0 flex-1 border-0 bg-transparent py-3 text-sm text-ink-950 outline-none placeholder:text-slate-400 focus:ring-0" name="neighborhood" type="text" maxlength="100" placeholder="Seu bairro" list="home-neighborhood-suggestions" data-location-neighborhood>
+                        <datalist id="home-neighborhood-suggestions" data-location-neighborhood-list></datalist>
                     </label>
                 </div>
+                <p class="text-xs text-slate-500 sm:col-span-2" data-location-city-status role="status" aria-live="polite">Selecione um estado para carregar as cidades do IBGE.</p>
+                <button class="text-left text-xs font-bold text-brand-700 underline" type="button" data-location-city-retry hidden>Tentar carregar cidades novamente</button>
+                <p class="text-xs text-slate-500 sm:col-span-2" data-location-neighborhood-status role="status" aria-live="polite">Os bairros são sugestões comunitárias do OpenStreetMap e podem estar incompletos; você também pode digitar o bairro. <a class="underline" href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">Créditos</a>.</p>
                 <button class="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-brand-700 px-6 text-sm font-bold text-white transition hover:bg-brand-800 focus:outline-none focus:ring-4 focus:ring-brand-100 sm:col-span-2" type="submit">
                     Buscar
                     <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14m-6-6 6 6-6 6" /></svg>

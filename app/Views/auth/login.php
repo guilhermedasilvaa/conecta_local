@@ -52,8 +52,8 @@
         <button class="flex min-h-12 w-full items-center justify-center rounded-xl bg-brand-700 px-5 py-3.5 text-sm font-bold text-white shadow-sm transition hover:bg-brand-800 focus:outline-none focus:ring-4 focus:ring-brand-100 disabled:cursor-wait disabled:opacity-70" type="submit" data-loading-label="Entrando...">Entrar</button>
     </form>
 
-    <p class="mt-6 text-center text-sm text-slate-500">Ainda não tem uma conta?
-        <a class="font-bold text-brand-700 transition hover:text-brand-900 hover:underline" href="<?= site_url('register') ?>">Cadastre-se</a>
+    <p class="mt-6 text-center text-sm text-slate-500">Ainda não anuncia seus serviços?
+        <a class="mt-1 inline-block font-bold text-brand-700 transition hover:text-brand-900 hover:underline" href="<?= site_url('register') ?>">Cadastre-se como profissional</a>
     </p>
 </div>
 <?= $this->endSection() ?>

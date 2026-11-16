@@ -78,5 +78,6 @@
             <?= $this->renderSection('content') ?>
         </main>
     </div>
+    <script src="<?= base_url('assets/js/location-fields.js') ?>" defer></script>
 </body>
 </html>

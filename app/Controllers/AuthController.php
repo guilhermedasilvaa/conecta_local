@@ -81,6 +81,7 @@ class AuthController extends BaseController
             'whatsapp'         => trim($this->postString('whatsapp')),
             'city'             => trim($this->postString('city')),
             'state'            => strtoupper(trim($this->postString('state'))),
+            'neighborhood'     => trim($this->postString('neighborhood')),
             'accept_terms'     => $this->postString('accept_terms'),
         ];
 
@@ -93,6 +94,7 @@ class AuthController extends BaseController
                 'whatsapp'         => 'required|max_length[20]',
                 'city'             => 'required|max_length[100]',
                 'state'            => 'required|in_list[' . implode(',', array_keys(BrazilianStates::STATES)) . ']',
+                'neighborhood'     => 'permit_empty|max_length[100]',
                 'accept_terms'     => 'required|in_list[1]',
             ], [
                 'name' => [
@@ -126,6 +128,7 @@ class AuthController extends BaseController
                     'required' => 'Selecione seu estado.',
                     'in_list'  => 'Selecione um estado válido.',
                 ],
+                'neighborhood' => ['max_length' => 'O bairro deve ter no máximo 100 caracteres.'],
                 'accept_terms' => [
                     'required' => 'É necessário aceitar os Termos de Uso e a Política de Privacidade.',
                     'in_list'  => 'É necessário aceitar os Termos de Uso e a Política de Privacidade.',
@@ -177,6 +180,7 @@ class AuthController extends BaseController
                 'whatsapp' => $data['whatsapp'],
                 'city'     => $data['city'],
                 'state'    => $data['state'],
+                'neighborhood' => $data['neighborhood'] !== '' ? $data['neighborhood'] : null,
             ]);
 
             if ($profileCreated === false || ! $db->transStatus()) {
@@ -242,6 +246,7 @@ class AuthController extends BaseController
             'whatsapp'     => $data['whatsapp'],
             'city'         => $data['city'],
             'state'        => $data['state'],
+            'neighborhood' => $data['neighborhood'],
             'accept_terms' => $data['accept_terms'],
         ];
     }

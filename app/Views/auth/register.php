@@ -2,9 +2,9 @@
 
 <?= $this->section('content') ?>
 <div>
-    <p class="text-xs font-bold uppercase tracking-[0.14em] text-brand-700">Faça parte da rede</p>
-    <h2 class="mt-2 text-3xl font-extrabold tracking-tight text-ink-950">Crie sua conta profissional</h2>
-    <p class="mt-2 text-sm leading-6 text-slate-500">Conte com o Conecta Local para aproximar seus serviços de novos clientes.</p>
+    <p class="text-xs font-bold uppercase tracking-[0.14em] text-brand-700">Cadastro para profissionais</p>
+    <h2 class="mt-2 text-3xl font-extrabold tracking-tight text-ink-950">Cadastre-se como profissional</h2>
+    <p class="mt-2 text-sm leading-6 text-slate-500">Crie seu perfil para divulgar seus serviços e aproximá-los de novos clientes na sua região.</p>
 
     <?php if ($error !== null): ?>
         <div class="mt-5 flex items-start gap-3 rounded-2xl border border-red-200 bg-red-50 px-4 py-3.5 text-sm leading-5 text-red-800" role="alert">
@@ -67,25 +67,39 @@
             <?php endif ?>
         </div>
 
-        <div class="grid gap-4 sm:grid-cols-2">
-            <div>
-            <label class="mb-2 block text-sm font-bold text-ink-950" for="city">Cidade</label>
-            <input class="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-ink-950 outline-none transition focus:border-brand-500 focus:ring-4 focus:ring-brand-50" id="city" name="city" type="text" value="<?= esc($oldInput['city'] ?? '') ?>" autocomplete="address-level2" maxlength="100" required>
-            <?php if (isset($validationErrors['city'])): ?>
-                <p class="mt-1.5 text-sm font-medium text-red-700" id="city-error"><?= esc($validationErrors['city']) ?></p>
-            <?php endif ?>
-            </div>
+        <div class="grid gap-4 sm:grid-cols-2" data-location-fields>
             <div>
                 <label class="mb-2 block text-sm font-bold text-ink-950" for="state">Estado</label>
-                <select class="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-ink-950 outline-none transition focus:border-brand-500 focus:ring-4 focus:ring-brand-50" id="state" name="state" autocomplete="address-level1" required>
+                <select class="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-ink-950 outline-none transition focus:border-brand-500 focus:ring-4 focus:ring-brand-50" id="state" name="state" autocomplete="address-level1" data-location-state required>
                     <option value="">Selecione seu estado</option>
                     <?php foreach ($states as $uf => $stateName): ?>
-                        <option value="<?= esc($uf) ?>" <?= ($oldInput['state'] ?? '') === $uf ? 'selected' : '' ?>><?= esc($stateName) ?> (<?= esc($uf) ?>)</option>
+                        <option value="<?= esc($uf) ?>" data-state-name="<?= esc($stateName, 'attr') ?>" <?= ($oldInput['state'] ?? '') === $uf ? 'selected' : '' ?>><?= esc($stateName) ?> (<?= esc($uf) ?>)</option>
                     <?php endforeach ?>
                 </select>
                 <?php if (isset($validationErrors['state'])): ?>
                     <p class="mt-1.5 text-sm font-medium text-red-700" id="state-error"><?= esc($validationErrors['state']) ?></p>
                 <?php endif ?>
+            </div>
+            <div>
+                <label class="mb-2 block text-sm font-bold text-ink-950" for="city">Cidade</label>
+                <select class="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-ink-950 outline-none transition focus:border-brand-500 focus:ring-4 focus:ring-brand-50 disabled:cursor-not-allowed disabled:bg-slate-100" id="city" name="city" autocomplete="address-level2" data-location-city required>
+                    <option value="<?= esc($oldInput['city'] ?? '') ?>"><?= esc($oldInput['city'] ?? 'Selecione um estado primeiro') ?></option>
+                </select>
+                <p class="mt-1.5 text-xs text-slate-500" data-location-city-status role="status" aria-live="polite"></p>
+                <button class="mt-1 text-xs font-bold text-brand-700 underline" type="button" data-location-city-retry hidden>Tentar carregar cidades novamente</button>
+                <?php if (isset($validationErrors['city'])): ?>
+                    <p class="mt-1.5 text-sm font-medium text-red-700" id="city-error"><?= esc($validationErrors['city']) ?></p>
+                <?php endif ?>
+            </div>
+            <div class="sm:col-span-2">
+                <label class="mb-2 block text-sm font-bold text-ink-950" for="neighborhood">Bairro <span class="font-normal text-slate-500">(opcional)</span></label>
+                <input class="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-ink-950 outline-none transition focus:border-brand-500 focus:ring-4 focus:ring-brand-50" id="neighborhood" name="neighborhood" type="text" maxlength="100" value="<?= esc($oldInput['neighborhood'] ?? '') ?>" autocomplete="address-level3" list="register-neighborhood-suggestions" data-location-neighborhood>
+                <datalist id="register-neighborhood-suggestions" data-location-neighborhood-list></datalist>
+                <p class="mt-1.5 text-xs text-slate-500" data-location-neighborhood-status role="status" aria-live="polite">Selecione uma cidade para ver sugestões de bairros.</p>
+                <?php if (isset($validationErrors['neighborhood'])): ?>
+                    <p class="mt-1.5 text-sm font-medium text-red-700" id="neighborhood-error"><?= esc($validationErrors['neighborhood']) ?></p>
+                <?php endif ?>
+                <p class="mt-1 text-xs text-slate-400">Sugestões comunitárias do <a class="underline" href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">OpenStreetMap</a>; a lista pode estar incompleta e você também pode digitar o bairro.</p>
             </div>
         </div>
 

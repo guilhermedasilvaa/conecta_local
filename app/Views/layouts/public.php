@@ -38,8 +38,7 @@ $activePage = match (true) {
             </div>
 
             <div class="hidden items-center gap-3 lg:flex">
-                <a data-nav-item="login" data-nav-active="rounded-xl bg-brand-50 px-4 py-2.5 text-sm font-bold text-brand-800 ring-1 ring-brand-100" data-nav-idle="rounded-xl px-4 py-2.5 text-sm font-bold text-slate-700 transition hover:bg-slate-100 hover:text-brand-800" class="<?= $activePage === 'login' ? 'rounded-xl bg-brand-50 px-4 py-2.5 text-sm font-bold text-brand-800 ring-1 ring-brand-100' : 'rounded-xl px-4 py-2.5 text-sm font-bold text-slate-700 transition hover:bg-slate-100 hover:text-brand-800' ?>" href="<?= site_url('login') ?>" <?= $activePage === 'login' ? 'aria-current="page"' : '' ?>>Entrar</a>
-                <a data-nav-item="register" data-nav-active="rounded-xl bg-brand-800 px-4 py-2.5 text-sm font-bold text-white shadow-sm ring-4 ring-brand-100" data-nav-idle="rounded-xl bg-brand-700 px-4 py-2.5 text-sm font-bold text-white shadow-sm transition hover:bg-brand-800 focus:outline-none focus:ring-4 focus:ring-brand-100" class="<?= $activePage === 'register' ? 'rounded-xl bg-brand-800 px-4 py-2.5 text-sm font-bold text-white shadow-sm ring-4 ring-brand-100' : 'rounded-xl bg-brand-700 px-4 py-2.5 text-sm font-bold text-white shadow-sm transition hover:bg-brand-800 focus:outline-none focus:ring-4 focus:ring-brand-100' ?>" href="<?= site_url('register') ?>" <?= $activePage === 'register' ? 'aria-current="page"' : '' ?>>Cadastrar</a>
+                <a data-nav-item="login" data-nav-active="rounded-xl bg-brand-800 px-4 py-2.5 text-sm font-bold text-white shadow-sm ring-4 ring-brand-100" data-nav-idle="rounded-xl bg-brand-700 px-4 py-2.5 text-sm font-bold text-white shadow-sm transition hover:bg-brand-800 focus:outline-none focus:ring-4 focus:ring-brand-100" class="<?= $activePage === 'login' ? 'rounded-xl bg-brand-800 px-4 py-2.5 text-sm font-bold text-white shadow-sm ring-4 ring-brand-100' : 'rounded-xl bg-brand-700 px-4 py-2.5 text-sm font-bold text-white shadow-sm transition hover:bg-brand-800 focus:outline-none focus:ring-4 focus:ring-brand-100' ?>" href="<?= site_url('login') ?>" <?= $activePage === 'login' ? 'aria-current="page"' : '' ?>>Área do profissional</a>
             </div>
 
             <details class="relative lg:hidden">
@@ -55,9 +54,8 @@ $activePage = match (true) {
                         <a data-nav-item="categories" data-nav-active="rounded-xl bg-brand-50 px-3 py-3 text-sm font-bold text-brand-800" data-nav-idle="rounded-xl px-3 py-3 text-sm font-semibold text-slate-700 hover:bg-slate-50" class="rounded-xl px-3 py-3 text-sm font-semibold text-slate-700 hover:bg-slate-50" href="<?= site_url('/') ?>#categorias">Categorias</a>
                         <a data-nav-item="about" data-nav-active="rounded-xl bg-brand-50 px-3 py-3 text-sm font-bold text-brand-800" data-nav-idle="rounded-xl px-3 py-3 text-sm font-semibold text-slate-700 hover:bg-slate-50" class="rounded-xl px-3 py-3 text-sm font-semibold text-slate-700 hover:bg-slate-50" href="<?= site_url('/') ?>#sobre">Sobre</a>
                     </div>
-                    <div class="mt-2 grid grid-cols-2 gap-2 border-t border-slate-100 pt-3">
-                        <a data-nav-item="login" data-nav-active="rounded-xl border border-brand-200 bg-brand-50 px-3 py-2.5 text-center text-sm font-bold text-brand-800" data-nav-idle="rounded-xl border border-slate-200 px-3 py-2.5 text-center text-sm font-bold text-slate-700 hover:bg-slate-50" class="<?= $activePage === 'login' ? 'rounded-xl border border-brand-200 bg-brand-50 px-3 py-2.5 text-center text-sm font-bold text-brand-800' : 'rounded-xl border border-slate-200 px-3 py-2.5 text-center text-sm font-bold text-slate-700 hover:bg-slate-50' ?>" href="<?= site_url('login') ?>" <?= $activePage === 'login' ? 'aria-current="page"' : '' ?>>Entrar</a>
-                        <a data-nav-item="register" data-nav-active="rounded-xl bg-brand-800 px-3 py-2.5 text-center text-sm font-bold text-white ring-4 ring-brand-100" data-nav-idle="rounded-xl bg-brand-700 px-3 py-2.5 text-center text-sm font-bold text-white hover:bg-brand-800" class="<?= $activePage === 'register' ? 'rounded-xl bg-brand-800 px-3 py-2.5 text-center text-sm font-bold text-white ring-4 ring-brand-100' : 'rounded-xl bg-brand-700 px-3 py-2.5 text-center text-sm font-bold text-white hover:bg-brand-800' ?>" href="<?= site_url('register') ?>" <?= $activePage === 'register' ? 'aria-current="page"' : '' ?>>Cadastrar</a>
+                    <div class="mt-2 grid grid-cols-1 gap-2 border-t border-slate-100 pt-3">
+                        <a data-nav-item="login" data-nav-active="rounded-xl bg-brand-800 px-3 py-2.5 text-center text-sm font-bold text-white ring-4 ring-brand-100" data-nav-idle="rounded-xl bg-brand-700 px-3 py-2.5 text-center text-sm font-bold text-white hover:bg-brand-800" class="<?= $activePage === 'login' ? 'rounded-xl bg-brand-800 px-3 py-2.5 text-center text-sm font-bold text-white ring-4 ring-brand-100' : 'rounded-xl bg-brand-700 px-3 py-2.5 text-center text-sm font-bold text-white hover:bg-brand-800' ?>" href="<?= site_url('login') ?>" <?= $activePage === 'login' ? 'aria-current="page"' : '' ?>>Área do profissional</a>
                     </div>
                 </div>
             </details>
@@ -97,6 +95,7 @@ $activePage = match (true) {
             </div>
         </div>
     </footer>
+<script src="<?= base_url('assets/js/location-fields.js') ?>" defer></script>
 <script {csp-script-nonce}>
     const updateActiveNavigation = () => {
         const hashItem = {

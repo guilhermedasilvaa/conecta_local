@@ -41,6 +41,7 @@
             </div>
         </section>
     </main>
+    <script src="<?= base_url('assets/js/location-fields.js') ?>" defer></script>
     <script {csp-script-nonce}>
         document.querySelectorAll('form[data-loading-form]').forEach((form) => {
             form.addEventListener('submit', () => {

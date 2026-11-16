@@ -127,7 +127,12 @@ class ContentSecurityPolicy extends BaseConfig
      *
      * @var list<string>|string
      */
-    public $connectSrc = 'self';
+    public $connectSrc = [
+        'self',
+        'https://servicodados.ibge.gov.br',
+        'https://nominatim.openstreetmap.org',
+        'https://overpass-api.de',
+    ];
 
     /**
      * Specifies the origins that can serve web fonts.
