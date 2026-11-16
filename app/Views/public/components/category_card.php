@@ -23,9 +23,9 @@ $categoryIcon = match ($category['name']) {
     default                           => 'general',
 };
 ?>
-<a class="group flex min-h-32 flex-col rounded-2xl border border-slate-200 bg-white p-4 transition hover:-translate-y-0.5 hover:border-brand-200 hover:shadow-md sm:p-5" href="<?= site_url('profissionais?category=' . (int) $category['id']) ?>">
-    <span class="flex h-11 w-11 items-center justify-center rounded-xl bg-brand-50 text-brand-700 transition group-hover:bg-brand-700 group-hover:text-white" aria-hidden="true">
-        <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+<a class="group flex min-h-16 min-w-0 items-center gap-3 rounded-xl border border-slate-200 bg-white/90 p-3 transition duration-200 hover:-translate-y-0.5 hover:border-brand-200 hover:bg-white hover:shadow-md focus:outline-none focus-visible:ring-4 focus-visible:ring-brand-100 sm:gap-3.5 sm:p-3.5" href="<?= site_url('profissionais?category=' . (int) $category['id']) ?>">
+    <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-brand-50 text-brand-700 transition group-hover:bg-brand-700 group-hover:text-white sm:h-10 sm:w-10" aria-hidden="true">
+        <svg class="h-4.5 w-4.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
             <?php if ($categoryIcon === 'web'): ?>
                 <path d="m8 8-4 4 4 4m8-8 4 4-4 4m-3-11-2 14" />
             <?php elseif ($categoryIcon === 'design'): ?>
@@ -71,6 +71,5 @@ $categoryIcon = match ($category['name']) {
             <?php endif ?>
         </svg>
     </span>
-    <span class="mt-4 block text-sm font-bold leading-5 text-ink-950"><?= esc($category['name']) ?></span>
-    <span class="mt-1.5 line-clamp-2 text-xs leading-5 text-slate-500"><?= esc($category['description'] ?: 'Veja profissionais desta categoria.') ?></span>
+    <span class="line-clamp-2 min-w-0 text-xs font-bold leading-4 text-ink-950 sm:text-sm sm:leading-5"><?= esc($category['name']) ?></span>
 </a>

@@ -2,7 +2,6 @@
 <?= $this->section('title') ?>Início<?= $this->endSection() ?>
 
 <?= $this->section('content') ?>
-<?php $heroProfessional = $professionals[0] ?? null ?>
 <section class="relative isolate overflow-hidden bg-gradient-to-br from-brand-50 via-white to-sky-50">
     <div class="pointer-events-none absolute -right-36 -top-32 -z-10 h-96 w-96 rounded-full bg-brand-100/70 blur-3xl"></div>
     <div class="pointer-events-none absolute -bottom-48 left-1/4 -z-10 h-96 w-96 rounded-full bg-cyan-100/60 blur-3xl"></div>
@@ -61,56 +60,36 @@
             </div>
         </div>
 
-        <div class="relative mx-auto w-full max-w-xl lg:max-w-none">
-            <?php if ($heroProfessional !== null && $heroProfessional['photo_url'] !== null): ?>
-                <div class="relative min-h-[19rem] overflow-hidden rounded-[2rem] bg-brand-100 shadow-2xl shadow-brand-900/15 sm:min-h-[25rem]">
-                    <img class="absolute inset-0 h-full w-full object-cover" src="<?= esc($heroProfessional['photo_url'], 'attr') ?>" alt="Foto de <?= esc($heroProfessional['name']) ?>" fetchpriority="high">
-                    <div class="absolute inset-0 bg-gradient-to-t from-slate-950/75 via-slate-950/5 to-transparent"></div>
-                    <div class="absolute inset-x-0 bottom-0 flex items-end justify-between gap-4 p-5 text-white sm:p-7">
-                        <div>
-                            <p class="text-xs font-bold uppercase tracking-[0.14em] text-brand-100">Profissional em destaque</p>
-                            <p class="mt-1 text-xl font-bold sm:text-2xl"><?= esc($heroProfessional['name']) ?></p>
-                            <p class="mt-1 text-sm text-white/85"><?= esc($heroProfessional['city']) ?><?= ! empty($heroProfessional['state']) ? ', ' . esc($heroProfessional['state']) : '' ?><?= ! empty($heroProfessional['neighborhood']) ? ' · ' . esc($heroProfessional['neighborhood']) : '' ?></p>
-                        </div>
-                        <a class="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-white text-brand-800 shadow-lg transition hover:scale-105" href="<?= site_url('profissionais/' . (int) $heroProfessional['id']) ?>" aria-label="Ver perfil de <?= esc($heroProfessional['name']) ?>">
-                            <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14m-6-6 6 6-6 6" /></svg>
-                        </a>
-                    </div>
-                    <div class="absolute right-4 top-4 rounded-full border border-white/50 bg-white/90 px-3 py-1.5 text-xs font-bold text-brand-800 shadow-sm sm:right-6 sm:top-6">Conecta Local</div>
+        <div class="mx-auto hidden w-full max-w-xl lg:block lg:max-w-none">
+            <div class="flex items-end justify-between gap-3">
+                <div>
+                    <p class="text-xs font-bold uppercase tracking-[0.14em] text-brand-700">Encontre por especialidade</p>
+                    <h2 class="mt-2 text-xl font-extrabold tracking-tight text-ink-950 sm:text-2xl">O que você precisa?</h2>
                 </div>
+                <a class="shrink-0 text-xs font-bold text-brand-700 underline decoration-brand-200 underline-offset-4 transition hover:text-brand-900 sm:text-sm" href="#todas-categorias">Ver todas as categorias</a>
+            </div>
+            <?php if ($categories === []): ?>
+                <p class="mt-5 rounded-2xl border border-slate-200 bg-white/80 p-5 text-sm text-slate-500">Novas categorias serão exibidas aqui em breve.</p>
             <?php else: ?>
-                <div class="relative flex min-h-[19rem] items-end overflow-hidden rounded-[2rem] bg-gradient-to-br from-brand-800 via-brand-700 to-cyan-700 p-6 text-white shadow-2xl shadow-brand-900/15 sm:min-h-[25rem] sm:p-8">
-                    <div class="absolute -right-12 -top-12 h-60 w-60 rounded-full border-[34px] border-white/10"></div>
-                    <div class="absolute -right-10 bottom-10 h-44 w-44 rounded-full bg-cyan-300/20 blur-2xl"></div>
-                    <div class="relative">
-                        <span class="flex h-16 w-16 items-center justify-center rounded-2xl border border-white/20 bg-white/10">
-                            <svg class="h-9 w-9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 11.25 10.5 9a2.12 2.12 0 0 1 3 0l.75.75m-6 1.5 3.75 3.75a2.12 2.12 0 0 0 3 0l3.75-3.75M3 9.75l4.5-4.5 3 3-4.5 4.5L3 9.75Zm18 0-4.5-4.5-3 3 4.5 4.5 3-3Z" /></svg>
-                        </span>
-                        <p class="mt-6 text-xs font-bold uppercase tracking-[0.16em] text-brand-100">Conexões locais</p>
-                        <p class="mt-2 max-w-sm text-2xl font-bold leading-tight sm:text-3xl">Talentos da sua região, a um contato de distância.</p>
-                        <p class="mt-3 max-w-sm text-sm leading-6 text-white/75">Descubra serviços locais e encontre a ajuda certa para o que você precisa.</p>
-                    </div>
+                <div class="mt-5 grid grid-cols-2 gap-2.5 sm:gap-3">
+                    <?php foreach (array_slice($categories, 0, 8) as $category): ?>
+                        <?= view('public/components/category_card', ['category' => $category]) ?>
+                    <?php endforeach ?>
                 </div>
             <?php endif ?>
         </div>
     </div>
 </section>
 
-<section id="categorias" class="scroll-mt-24 mx-auto max-w-7xl px-5 py-14 sm:px-8 sm:py-16 lg:py-20">
-    <div class="flex flex-wrap items-end justify-between gap-4">
-        <div>
-            <p class="text-xs font-bold uppercase tracking-[0.14em] text-brand-700">Encontre por especialidade</p>
-            <h2 class="mt-2 text-2xl font-extrabold tracking-tight text-ink-950 sm:text-3xl">Categorias em destaque</h2>
-        </div>
-        <a class="inline-flex items-center gap-2 text-sm font-bold text-brand-700 transition hover:text-brand-900" href="<?= site_url('profissionais') ?>">
-            Ver todas as categorias
-            <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14m-6-6 6 6-6 6" /></svg>
-        </a>
+<section id="todas-categorias" class="scroll-mt-24 mx-auto w-full max-w-7xl px-5 py-12 sm:px-8 sm:py-14" aria-labelledby="categories-heading">
+    <div>
+        <p class="text-xs font-bold uppercase tracking-[0.14em] text-brand-700">Encontre por especialidade</p>
+        <h2 id="categories-heading" class="mt-2 text-2xl font-extrabold tracking-tight text-ink-950 sm:text-3xl">Todas as categorias</h2>
     </div>
     <?php if ($categories === []): ?>
-        <p class="mt-7 rounded-2xl border border-slate-200 bg-white p-6 text-sm text-slate-500">Novas categorias serão exibidas aqui em breve.</p>
+        <p class="mt-6 rounded-2xl border border-slate-200 bg-white p-6 text-sm text-slate-500">Novas categorias serão exibidas aqui em breve.</p>
     <?php else: ?>
-        <div class="mt-7 grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4 lg:grid-cols-4 xl:grid-cols-6">
+        <div class="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4 lg:grid-cols-4 xl:grid-cols-5">
             <?php foreach ($categories as $category): ?>
                 <?= view('public/components/category_card', ['category' => $category]) ?>
             <?php endforeach ?>

@@ -160,6 +160,16 @@ class PublicCatalogModel extends Model
         foreach ($professionals as &$professional) {
             $professional['photo_url'] = $this->photoUrl($professional['photo'] ?? null);
             $professional['services'] = $services[(int) $professional['id']] ?? [];
+
+            $categoryCounts = [];
+            foreach ($professional['services'] as $service) {
+                $categoryName = $service['category_name'] ?? '';
+                if ($categoryName !== '') {
+                    $categoryCounts[$categoryName] = ($categoryCounts[$categoryName] ?? 0) + 1;
+                }
+            }
+            arsort($categoryCounts);
+            $professional['primary_category'] = array_key_first($categoryCounts);
         }
         unset($professional);
 

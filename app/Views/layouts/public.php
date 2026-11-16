@@ -30,7 +30,7 @@ $activePage = match (true) {
             <div class="hidden items-center gap-8 lg:flex">
                 <a data-nav-item="home" data-nav-active="relative py-2 text-sm font-bold text-brand-800 after:absolute after:-bottom-3.5 after:left-0 after:h-0.5 after:w-full after:rounded-full after:bg-brand-600" data-nav-idle="py-2 text-sm font-semibold text-slate-600 transition hover:text-brand-700" class="<?= $activePage === 'home' ? 'relative py-2 text-sm font-bold text-brand-800 after:absolute after:-bottom-3.5 after:left-0 after:h-0.5 after:w-full after:rounded-full after:bg-brand-600' : 'py-2 text-sm font-semibold text-slate-600 transition hover:text-brand-700' ?>" href="<?= site_url('/') ?>" <?= $activePage === 'home' ? 'aria-current="page"' : '' ?>>Início</a>
                 <a data-nav-item="professionals" data-nav-active="relative py-2 text-sm font-bold text-brand-800 after:absolute after:-bottom-3.5 after:left-0 after:h-0.5 after:w-full after:rounded-full after:bg-brand-600" data-nav-idle="py-2 text-sm font-semibold text-slate-600 transition hover:text-brand-700" class="<?= $activePage === 'professionals' ? 'relative py-2 text-sm font-bold text-brand-800 after:absolute after:-bottom-3.5 after:left-0 after:h-0.5 after:w-full after:rounded-full after:bg-brand-600' : 'py-2 text-sm font-semibold text-slate-600 transition hover:text-brand-700' ?>" href="<?= site_url('profissionais') ?>" <?= $activePage === 'professionals' ? 'aria-current="page"' : '' ?>>Profissionais</a>
-                <a data-nav-item="categories" data-nav-active="relative py-2 text-sm font-bold text-brand-800 after:absolute after:-bottom-3.5 after:left-0 after:h-0.5 after:w-full after:rounded-full after:bg-brand-600" data-nav-idle="py-2 text-sm font-semibold text-slate-600 transition hover:text-brand-700" class="py-2 text-sm font-semibold text-slate-600 transition hover:text-brand-700" href="<?= site_url('/') ?>#categorias">Categorias</a>
+                <a data-nav-item="categories" data-nav-active="relative py-2 text-sm font-bold text-brand-800 after:absolute after:-bottom-3.5 after:left-0 after:h-0.5 after:w-full after:rounded-full after:bg-brand-600" data-nav-idle="py-2 text-sm font-semibold text-slate-600 transition hover:text-brand-700" class="py-2 text-sm font-semibold text-slate-600 transition hover:text-brand-700" href="<?= site_url('/') ?>#todas-categorias">Categorias</a>
                 <a data-nav-item="about" data-nav-active="relative py-2 text-sm font-bold text-brand-800 after:absolute after:-bottom-3.5 after:left-0 after:h-0.5 after:w-full after:rounded-full after:bg-brand-600" data-nav-idle="py-2 text-sm font-semibold text-slate-600 transition hover:text-brand-700" class="py-2 text-sm font-semibold text-slate-600 transition hover:text-brand-700" href="<?= site_url('/') ?>#sobre">Sobre</a>
             </div>
 
@@ -48,7 +48,7 @@ $activePage = match (true) {
                     <div class="grid gap-1">
                         <a data-nav-item="home" data-nav-active="rounded-xl bg-brand-50 px-3 py-3 text-sm font-bold text-brand-800" data-nav-idle="rounded-xl px-3 py-3 text-sm font-semibold text-slate-700 hover:bg-slate-50" class="<?= $activePage === 'home' ? 'rounded-xl bg-brand-50 px-3 py-3 text-sm font-bold text-brand-800' : 'rounded-xl px-3 py-3 text-sm font-semibold text-slate-700 hover:bg-slate-50' ?>" href="<?= site_url('/') ?>" <?= $activePage === 'home' ? 'aria-current="page"' : '' ?>>Início</a>
                         <a data-nav-item="professionals" data-nav-active="rounded-xl bg-brand-50 px-3 py-3 text-sm font-bold text-brand-800" data-nav-idle="rounded-xl px-3 py-3 text-sm font-semibold text-slate-700 hover:bg-slate-50" class="<?= $activePage === 'professionals' ? 'rounded-xl bg-brand-50 px-3 py-3 text-sm font-bold text-brand-800' : 'rounded-xl px-3 py-3 text-sm font-semibold text-slate-700 hover:bg-slate-50' ?>" href="<?= site_url('profissionais') ?>" <?= $activePage === 'professionals' ? 'aria-current="page"' : '' ?>>Profissionais</a>
-                        <a data-nav-item="categories" data-nav-active="rounded-xl bg-brand-50 px-3 py-3 text-sm font-bold text-brand-800" data-nav-idle="rounded-xl px-3 py-3 text-sm font-semibold text-slate-700 hover:bg-slate-50" class="rounded-xl px-3 py-3 text-sm font-semibold text-slate-700 hover:bg-slate-50" href="<?= site_url('/') ?>#categorias">Categorias</a>
+                        <a data-nav-item="categories" data-nav-active="rounded-xl bg-brand-50 px-3 py-3 text-sm font-bold text-brand-800" data-nav-idle="rounded-xl px-3 py-3 text-sm font-semibold text-slate-700 hover:bg-slate-50" class="rounded-xl px-3 py-3 text-sm font-semibold text-slate-700 hover:bg-slate-50" href="<?= site_url('/') ?>#todas-categorias">Categorias</a>
                         <a data-nav-item="about" data-nav-active="rounded-xl bg-brand-50 px-3 py-3 text-sm font-bold text-brand-800" data-nav-idle="rounded-xl px-3 py-3 text-sm font-semibold text-slate-700 hover:bg-slate-50" class="rounded-xl px-3 py-3 text-sm font-semibold text-slate-700 hover:bg-slate-50" href="<?= site_url('/') ?>#sobre">Sobre</a>
                     </div>
                     <div class="mt-2 grid grid-cols-1 gap-2 border-t border-slate-100 pt-3">
@@ -76,7 +76,7 @@ $activePage = match (true) {
                 <h2 class="text-sm font-bold text-ink-950">Encontre serviços</h2>
                 <div class="mt-3 grid gap-2.5 text-sm text-slate-500">
                     <a class="transition hover:text-brand-700" href="<?= site_url('profissionais') ?>">Explorar profissionais</a>
-                    <a class="transition hover:text-brand-700" href="<?= site_url('/') ?>#categorias">Ver categorias</a>
+                    <a class="transition hover:text-brand-700" href="<?= site_url('/') ?>#todas-categorias">Ver categorias</a>
                 </div>
             </div>
             <div>
@@ -98,7 +98,7 @@ $activePage = match (true) {
 <script {csp-script-nonce}>
     const updateActiveNavigation = () => {
         const hashItem = {
-            '#categorias': 'categories',
+            '#todas-categorias': 'categories',
             '#sobre': 'about',
         }[window.location.hash];
         const activeItem = hashItem || '<?= esc($activePage, 'js') ?>';
